@@ -21,11 +21,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Restore dependency cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          vendor/bundle
+        key: ${{ runner.os }}-gems
+        restore-keys: |
+          ${{ runner.os }}-gems
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: "${{matrix.ruby}}"
     - name: Install dependencies and run RSpec
       run: |
         gem install bundler
+        bundle config set path 'vendor/bundle'
         bundle install --jobs 4 --retry 3
         bundle exec rspec
