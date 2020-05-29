@@ -33,6 +33,9 @@ jobs:
       with:
         ruby-version: "${{matrix.ruby}}"
     - name: Install dependencies and run RSpec
+      env:
+        # Neccessary for jruby test coverage
+        JRUBY_OPTS: "--debug"
       run: |
         gem install bundler
         bundle config set path 'vendor/bundle'
@@ -41,5 +44,5 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: "Coverage Ruby ${{matrix.ruby}}"
+        name: "Test Coverage ${{matrix.ruby}}"
         path: coverage/
