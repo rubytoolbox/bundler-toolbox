@@ -6,6 +6,36 @@ on:
     branches: [ master ]
 
 jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+        - '2.7'
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore dependency cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          vendor/bundle
+        key: ${{ runner.os }}-gems-${{matrix.ruby}}
+        restore-keys: |
+          ${{ runner.os }}-gems-${{matrix.ruby}}
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "${{matrix.ruby}}"
+    - name: Install dependencies and run rubocop
+      env:
+        # Neccessary for jruby test coverage
+        JRUBY_OPTS: "--debug"
+      run: |
+        gem install bundler
+        bundle config set path 'vendor/bundle'
+        bundle exec rubocop
+
   build:
     runs-on: ubuntu-latest
     strategy:
