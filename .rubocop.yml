@@ -48,6 +48,9 @@ Style/Documentation:
 Style/DoubleNegation:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
