@@ -19,6 +19,11 @@ Metrics/BlockLength:
     # The default guard-rspec config fails this, but it's ok.
     - 'Guardfile'
     - 'spec/**/*_spec.rb'
+    - '*.gemspec'
+
+Naming/FileName:
+  Exclude:
+    - lib/bundler-toolbox.rb
 
 # Big screens are common :)
 Layout/LineLength:
@@ -81,3 +86,4 @@ Style/ExponentialNotation:
   Enabled: true
 Style/SlicingWithRange:
   Enabled: true
+
