@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "bundler/toolbox"
+
+puts "Plain rubytoolbox executable works!"
