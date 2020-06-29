@@ -110,6 +110,5 @@ jobs:
         JRUBY_OPTS: "--debug"
       run: |
         gem install bundler
-        bundle config set path 'vendor/bundle'
         bundle install --jobs 4 --retry 3
         bundle exec cucumber features
