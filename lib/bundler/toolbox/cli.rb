@@ -7,21 +7,22 @@ module Bundler
     module CLI
       extend Dry::CLI::Registry
 
+      KNOWN_ENVIRONMENTS = %w[standalone bundler rubygems].freeze
+
       class << self
         def execution_environment
-          case ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]&.strip
-          when "standalone"
-            "standalone"
-          when "bundler"
-            "bundler"
-          when "rubygems"
-            "rubygems"
+          if KNOWN_ENVIRONMENTS.include? ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]
+            ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]
           else
             "unknown"
           end
         end
 
         def with_environment(new_environment)
+          unless KNOWN_ENVIRONMENTS.include? new_environment
+            raise ArgumentError, "Unknown environment #{new_environment}! Known: #{KNOWN_ENVIRONMENTS.inspect}"
+          end
+
           old_environment = ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]
           ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = new_environment
           yield
