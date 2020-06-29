@@ -3,8 +3,9 @@
 class Bundler::Toolbox::Plugins::Bundler < Bundler::Plugin::API
   command "toolbox"
 
-  def exec(command, args)
-    puts "Bundler plugin integration works! #{Bundler::Toolbox::VERSION}"
-    puts "You called " + command + " with args: " + args.inspect
+  def exec(_command, args)
+    Bundler::Toolbox::CLI.with_environment "bundler" do
+      Dry::CLI.new(Bundler::Toolbox::CLI).call arguments: args
+    end
   end
 end

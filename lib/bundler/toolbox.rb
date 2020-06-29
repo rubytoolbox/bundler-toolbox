@@ -2,6 +2,7 @@
 
 require "bundler/toolbox/version"
 require "bundler/toolbox/plugins"
+require "bundler/toolbox/cli"
 
 module Bundler
   module Toolbox

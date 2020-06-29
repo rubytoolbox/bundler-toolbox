@@ -3,4 +3,6 @@
 
 require "bundler/toolbox"
 
-puts "Plain rubytoolbox executable works!"
+Bundler::Toolbox::CLI.with_environment "standalone" do
+  Dry::CLI.new(Bundler::Toolbox::CLI).call
+end
