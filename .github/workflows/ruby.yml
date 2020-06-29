@@ -104,7 +104,7 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: "${{matrix.ruby}}"
-    - name: Install dependencies and run RSpec
+    - name: Install dependencies and run Cucumber
       env:
         # Neccessary for jruby test coverage
         JRUBY_OPTS: "--debug"
