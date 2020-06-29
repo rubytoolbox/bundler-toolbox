@@ -34,9 +34,10 @@ jobs:
       run: |
         gem install bundler
         bundle config set path 'vendor/bundle'
+        bundle install --jobs 4 --retry 3
         bundle exec rubocop
 
-  build:
+  rspec:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -76,3 +77,41 @@ jobs:
       with:
         name: "Test Coverage ${{matrix.ruby}}"
         path: coverage/
+
+  cucumber:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+        - head
+        - '2.7'
+        - '2.6'
+        - '2.5'
+        # These pass for me locally but do not on CI, and I'd rather not spend more time debugging this right now :(
+        #- jruby
+        #- jruby-head
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore dependency cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          vendor/bundle
+        key: ${{ runner.os }}-gems-${{matrix.ruby}}
+        restore-keys: |
+          ${{ runner.os }}-gems-${{matrix.ruby}}
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "${{matrix.ruby}}"
+    - name: Install dependencies and run Cucumber
+      env:
+        # Neccessary for jruby test coverage
+        JRUBY_OPTS: "--debug"
+
+      # WARNING! Must not bundle into vendor here, it will mess up cucumber features subsequently :(
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec cucumber features

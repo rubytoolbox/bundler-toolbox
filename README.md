@@ -1,28 +1,32 @@
 # Bundler::Toolbox
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bundler/toolbox`. To experiment with that code, run `bin/console` for an interactive prompt.
+⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠
 
-TODO: Delete this and the text above, and describe your gem
+**This is currently under development and not usable yet**
 
-## Installation
+⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠
 
-Add this line to your application's Gemfile:
+---
 
-```ruby
-gem 'bundler-toolbox'
-```
+**Command line utilities for getting information about [Rubygems](https://rubygems.org/) and your [bundle](https://bundler.io/) from [the Ruby Toolbox](https://www.ruby-toolbox.com/)**
 
-And then execute:
+## Installation & Usage
 
-    $ bundle install
+### Standalone command line executable
 
-Or install it yourself as:
+1. Install the gem: `gem install bundler-toolbox`
+2. `rubytoolbox`
 
-    $ gem install bundler-toolbox
+### As a bundler plugin
 
-## Usage
+1. Add this line to your `Gemfile`: `plugin "bundler-toolbox"`
+2. `bundle install`
+3. `bundle toolbox`
 
-TODO: Write usage instructions here
+### As a rubygems plugin
+
+1. Install the gem: `gem install bundler-toolbox`
+2. `gem toolbox`
 
 ## Development
 

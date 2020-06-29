@@ -19,6 +19,11 @@ Metrics/BlockLength:
     # The default guard-rspec config fails this, but it's ok.
     - 'Guardfile'
     - 'spec/**/*_spec.rb'
+    - '*.gemspec'
+
+Naming/FileName:
+  Exclude:
+    - lib/bundler-toolbox.rb
 
 # Big screens are common :)
 Layout/LineLength:
@@ -41,6 +46,9 @@ Style/Documentation:
 
 # Prefer to create "real" booleans using double negation
 Style/DoubleNegation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/StringLiterals:
@@ -80,4 +88,12 @@ Lint/StructNewOverride:
 Style/ExponentialNotation:
   Enabled: true
 Style/SlicingWithRange:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Style/RedundantFetchBlock:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
   Enabled: true
