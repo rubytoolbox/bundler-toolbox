@@ -108,6 +108,8 @@ jobs:
       env:
         # Neccessary for jruby test coverage
         JRUBY_OPTS: "--debug"
+
+      # WARNING! Must not bundle into vendor here, it will mess up cucumber features subsequently :(
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
