@@ -54,6 +54,9 @@ GEM
       guard (~> 2.2)
       guard-compat (~> 1.1)
     guard-compat (1.2.1)
+    guard-cucumber (3.0.0)
+      cucumber (>= 3.1)
+      nenv (>= 0.1)
     guard-rspec (4.7.3)
       guard (~> 2.1)
       guard-compat (~> 1.1)
@@ -128,6 +131,7 @@ DEPENDENCIES
   bundler-toolbox!
   cucumber
   guard-bundler
+  guard-cucumber
   guard-rspec
   guard-rubocop
   pry
