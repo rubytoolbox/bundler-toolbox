@@ -1,0 +1,30 @@
+# {{ name }} | Score {{ score }}
+
+{% if description %}*{{ description }}*{% endif %}
+
+{% if categories %}
+## Categories
+
+{% for category in categories %}
+### **{{ category.name }}** [{{ category.urls.toolbox_url }}]({{ category.urls.toolbox_url }})
+
+*{{ category.description }}*
+{% endfor %}
+{% endif %}
+
+{% if rubygem %}
+## Rubygem [{{ rubygem.name }}]({{ rubygem.url}})
+
+  * **Downloads**               {{ rubygem.stats.downloads }}
+  * **Reverse Dependencies**    {{ rubygem.stats.reverse_dependencies_count }}
+  * **Total Releases**          {{ rubygem.stats.releases_count }}
+{% endif %}
+
+
+{% if github_repo %}
+## Github Repo [{{ github_repo.path }}]({{ github_repo.url}})
+
+  * **Stargazers**     {{ github_repo.stats.stargazers_count }}
+  * **Forks**          {{ github_repo.stats.forks_count }}
+  * **Watchers**       {{ github_repo.stats.watchers_count }}
+{% endif %}

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "dry/cli"
+require "liquid"
 
 module Bundler
   module Toolbox
@@ -65,9 +66,22 @@ module Bundler
 
         def call(gems:, fixtures:, **)
           Bundler::Toolbox.compare(*gems, fixtures: fixtures).each do |project|
-            puts project.name
-            puts project.description
+            puts format_project(project)
           end
+        end
+
+        private
+
+        def template_path(filename)
+          File.join(__dir__, "..", "..", "..", "templates", filename)
+        end
+
+        def template
+          @template ||= Liquid::Template.parse File.read(template_path("about.liquid"))
+        end
+
+        def format_project(project)
+          template.render(project.to_h)
         end
       end
 

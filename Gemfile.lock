@@ -3,6 +3,7 @@ PATH
   specs:
     bundler-toolbox (0.1.0)
       dry-cli (~> 0.6.0)
+      liquid
       rubytoolbox-api (>= 0.2.0)
 
 GEM
@@ -69,6 +70,7 @@ GEM
     guard-rubocop (1.3.0)
       guard (~> 2.0)
       rubocop (~> 0.20)
+    liquid (4.0.3)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)

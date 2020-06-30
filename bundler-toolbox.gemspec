@@ -31,6 +31,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dry-cli", "~> 0.6.0"
   spec.add_dependency "rubytoolbox-api", ">= 0.2.0"
 
+  spec.add_dependency "liquid"
+
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "rubocop-performance"
   spec.add_development_dependency "rubocop-rspec"

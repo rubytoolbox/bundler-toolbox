@@ -82,7 +82,7 @@ RSpec.describe Bundler::Toolbox::CLI do
   describe "About Command" do
     it "prints information about requested gem" do
       expect { invoke "about", "simplecov", "--fixtures" }
-        .to output(/^simplecov/)
+        .to output(/Code coverage for Ruby with a powerful configuration library/)
         .to_stdout
     end
   end
