@@ -78,4 +78,12 @@ RSpec.describe Bundler::Toolbox::CLI do
         .to output(/Execution environment: #{described_class.execution_environment}/).to_stdout
     end
   end
+
+  describe "About Command" do
+    it "prints information about requested gem" do
+      expect { invoke "about", "simplecov", "--fixtures" }
+        .to output(/^simplecov/)
+        .to_stdout
+    end
+  end
 end

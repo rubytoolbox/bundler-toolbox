@@ -52,7 +52,27 @@ module Bundler
         end
       end
 
+      class About < Dry::CLI::Command
+        desc "Get information about given gem(s)"
+
+        argument :gems, type: :array,
+                        required: true,
+                        desc: "Name(s) of gems to print information about"
+
+        option :fixtures, type: :boolean,
+                          default: false,
+                          desc: "For testing purposues: Do not make actual API calls, use local fixtures"
+
+        def call(gems:, fixtures:, **)
+          Bundler::Toolbox.compare(*gems, fixtures: fixtures).each do |project|
+            puts project.name
+            puts project.description
+          end
+        end
+      end
+
       register "version", Version, aliases: ["v", "-v", "--version"]
+      register "about", About, aliases: ["a"]
     end
   end
 end
