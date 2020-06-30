@@ -25,9 +25,12 @@ module Bundler
 
           old_environment = ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]
           ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = new_environment
-          yield
-        ensure
-          ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = old_environment
+
+          begin
+            yield
+          ensure
+            ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = old_environment
+          end
         end
       end
 
