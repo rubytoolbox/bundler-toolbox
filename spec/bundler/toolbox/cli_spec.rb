@@ -85,5 +85,9 @@ RSpec.describe Bundler::Toolbox::CLI do
         .to output(/Code coverage for Ruby with a powerful configuration library/)
         .to_stdout
     end
+
+    it "debug" do
+      invoke "about", "simplecov", "--fixtures"
+    end
   end
 end

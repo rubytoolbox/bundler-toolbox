@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rubytoolbox-api", ">= 0.2.0"
 
   spec.add_dependency "liquid"
+  spec.add_dependency "rainbow", ">= 3.0.0"
 
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "rubocop-performance"

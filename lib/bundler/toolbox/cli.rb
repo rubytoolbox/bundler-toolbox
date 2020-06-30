@@ -2,6 +2,7 @@
 
 require "dry/cli"
 require "liquid"
+require "rainbow"
 
 module Bundler
   module Toolbox
@@ -54,6 +55,24 @@ module Bundler
       end
 
       class About < Dry::CLI::Command
+        module RainbowFilter
+          def color(input, color)
+            Rainbow(input).color(color.to_sym)
+          end
+
+          def bg(input, color)
+            Rainbow(input).background(color.to_sym)
+          end
+
+          def bold(input)
+            Rainbow(input).bright
+          end
+
+          def underline(input)
+            Rainbow(input).underline
+          end
+        end
+
         desc "Get information about given gem(s)"
 
         argument :gems, type: :array,
@@ -81,7 +100,7 @@ module Bundler
         end
 
         def format_project(project)
-          template.render(project.to_h)
+          template.render project.to_h, filters: [RainbowFilter]
         end
       end
 

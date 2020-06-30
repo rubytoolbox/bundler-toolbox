@@ -1,14 +1,14 @@
-# {{ name }} | Score {{ score }}
+{{ name | color: "red" | bold }} | Score {{ score }}
 
-{% if description %}*{{ description }}*{% endif %}
+{% if description %}{{ description | color: "darkgray" }}{% endif %}
 
 {% if categories %}
-## Categories
-
+{{ "Categories" | bold }}
+==========
 {% for category in categories %}
-### **{{ category.name }}** [{{ category.urls.toolbox_url }}]({{ category.urls.toolbox_url }})
+{{ category.name | bold }} {{ category.urls.toolbox_url | color: "darkgray" | underline }}
 
-*{{ category.description }}*
+{{ category.description | color: "darkgray" }}
 {% endfor %}
 {% endif %}
 
