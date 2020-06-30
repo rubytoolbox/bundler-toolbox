@@ -9,5 +9,6 @@ Feature: Bundler Plugin
     And I run `bundle`
     Then the output should contain "Installed plugin bundler-toolbox"
 
-    And I run `bundle toolbox`
-    Then the output should contain "Bundler plugin integration works!"
+    And I run `bundle toolbox version --info`
+    Then the output should contain "bundler-toolbox v"
+    And the output should contain "Execution environment: bundler"
