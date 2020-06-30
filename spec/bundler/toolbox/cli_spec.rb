@@ -4,8 +4,8 @@ require "spec_helper"
 
 RSpec.describe Bundler::Toolbox::CLI do
   around do |example|
+    original = ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]
     begin
-      original = ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]
       example.run
     ensure
       ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = original
