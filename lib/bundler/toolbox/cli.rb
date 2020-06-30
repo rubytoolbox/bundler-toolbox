@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "dry/cli"
+require "liquid"
+require "rainbow"
 
 module Bundler
   module Toolbox
@@ -52,7 +54,58 @@ module Bundler
         end
       end
 
+      class About < Dry::CLI::Command
+        module RainbowFilter
+          def color(input, color)
+            Rainbow(input).color(color.to_sym)
+          end
+
+          def bg(input, color)
+            Rainbow(input).background(color.to_sym)
+          end
+
+          def bold(input)
+            Rainbow(input).bright
+          end
+
+          def underline(input)
+            Rainbow(input).underline
+          end
+        end
+
+        desc "Get information about given gem(s)"
+
+        argument :gems, type: :array,
+                        required: true,
+                        desc: "Name(s) of gems to print information about"
+
+        option :fixtures, type: :boolean,
+                          default: false,
+                          desc: "For testing purposues: Do not make actual API calls, use local fixtures"
+
+        def call(gems:, fixtures:, **)
+          Bundler::Toolbox.compare(*gems, fixtures: fixtures).each do |project|
+            puts format_project(project)
+          end
+        end
+
+        private
+
+        def template_path(filename)
+          File.join(__dir__, "..", "..", "..", "templates", filename)
+        end
+
+        def template
+          @template ||= Liquid::Template.parse File.read(template_path("about.liquid"))
+        end
+
+        def format_project(project)
+          template.render project.to_h, filters: [RainbowFilter]
+        end
+      end
+
       register "version", Version, aliases: ["v", "-v", "--version"]
+      register "about", About, aliases: ["a"]
     end
   end
 end
