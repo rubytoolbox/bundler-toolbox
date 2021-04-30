@@ -55,7 +55,7 @@ RSpec.describe Bundler::Toolbox::CLI do
     it "changes environment back to the previous after block has run" do
       ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = "bundler"
 
-      described_class.with_environment("rubygems") {}
+      described_class.with_environment("rubygems") { "do nothing" }
 
       expect(described_class.execution_environment).to be == "bundler"
     end
@@ -64,13 +64,13 @@ RSpec.describe Bundler::Toolbox::CLI do
   describe "Version Command" do
     it "prints version" do
       expect { invoke "version" }
-        .to output(/^bundler-toolbox v#{Bundler::Toolbox::VERSION}/)
+        .to output(/^bundler-toolbox v#{Bundler::Toolbox::VERSION}/o)
         .to_stdout
     end
 
     it "prints ruby runtime context when invoked with --info" do
       expect { invoke "version", "--info" }
-        .to output(/Ruby: #{Regexp.escape(RUBY_DESCRIPTION)}/).to_stdout
+        .to output(/Ruby: #{Regexp.escape(RUBY_DESCRIPTION)}/o).to_stdout
     end
 
     it "prints gem execution environment when invoked with --info" do
