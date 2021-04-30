@@ -7,12 +7,16 @@
 require:
   - rubocop-performance
   - rubocop-rspec
+  - rubocop-rake
+
 
 AllCops:
   Exclude:
     - 'tmp/**/*.rb'
     # See https://qiita.com/ozhaan/items/40ea864757162e931be1
     - 'vendor/**/*'
+  NewCops: enable
+  TargetRubyVersion: 2.5.0
 
 Metrics/BlockLength:
   Exclude:
