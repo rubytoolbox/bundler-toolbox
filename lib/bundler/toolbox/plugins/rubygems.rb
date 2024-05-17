@@ -4,7 +4,7 @@ require "bundler-toolbox"
 
 class Gem::Commands::ToolboxCommand < Gem::Command
   def initialize
-    super "toolbox", "Hello World"
+    super("toolbox", "Hello World")
   end
 
   def execute

@@ -4,7 +4,7 @@ require "spec_helper"
 
 RSpec.describe Bundler::Toolbox::CLI do
   around do |example|
-    original = ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]
+    original = ENV.fetch("BUNDLER_TOOLBOX_ENVIRONMENT", nil)
     begin
       example.run
     ensure
@@ -21,7 +21,7 @@ RSpec.describe Bundler::Toolbox::CLI do
       it "returns #{environment} when BUNDLER_TOOLBOX_ENVIRONMENT is #{environment}" do
         ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = environment
 
-        expect(described_class.execution_environment).to be == environment
+        expect(described_class.execution_environment).to eq environment
       end
     end
 
@@ -29,7 +29,7 @@ RSpec.describe Bundler::Toolbox::CLI do
       it "returns 'unknown' when BUNDLER_TOOLBOX_ENVIRONMENT is #{environment.inspect}" do
         ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = environment.to_s
 
-        expect(described_class.execution_environment).to be == "unknown"
+        expect(described_class.execution_environment).to eq "unknown"
       end
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe Bundler::Toolbox::CLI do
         block_env = described_class.execution_environment
       end
 
-      expect(block_env).to be == chosen_env
+      expect(block_env).to eq chosen_env
     end
 
     it "changes environment back to the previous after block has run" do
@@ -57,7 +57,7 @@ RSpec.describe Bundler::Toolbox::CLI do
 
       described_class.with_environment("rubygems") { "do nothing" }
 
-      expect(described_class.execution_environment).to be == "bundler"
+      expect(described_class.execution_environment).to eq "bundler"
     end
   end
 

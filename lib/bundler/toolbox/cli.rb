@@ -23,7 +23,7 @@ module Bundler
             raise ArgumentError, "Unknown environment #{new_environment}! Known: #{KNOWN_ENVIRONMENTS.inspect}"
           end
 
-          old_environment = ENV["BUNDLER_TOOLBOX_ENVIRONMENT"]
+          old_environment = ENV.fetch("BUNDLER_TOOLBOX_ENVIRONMENT", nil)
           ENV["BUNDLER_TOOLBOX_ENVIRONMENT"] = new_environment
 
           begin

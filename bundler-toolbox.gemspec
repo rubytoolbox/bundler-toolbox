@@ -30,22 +30,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "dry-cli", "~> 0.6.0"
   spec.add_dependency "rubytoolbox-api", ">= 0.2.0"
-
-  spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "rubocop-performance"
-  spec.add_development_dependency "rubocop-rake"
-  spec.add_development_dependency "rubocop-rspec"
-
-  spec.add_development_dependency "aruba"
-  spec.add_development_dependency "cucumber"
-
-  spec.add_development_dependency "guard-bundler"
-  spec.add_development_dependency "guard-cucumber"
-  spec.add_development_dependency "guard-rspec"
-  spec.add_development_dependency "guard-rubocop"
-
-  spec.add_development_dependency "pry"
-
-  spec.add_development_dependency "rspec", ">= 3.9"
-  spec.add_development_dependency "simplecov", ">= 0.18.5"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
